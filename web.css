@@ -1,0 +1,49 @@
+ul.d
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li.c
+{
+    float:left;
+
+
+}
+a:link.m,a:visited
+{
+    display: block;
+    width: 90px;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px;
+    margin:2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-decoration: none;
+
+
+}
+
+.b
+{
+    float:right;
+
+}
+input[type='checkbox']
+{
+    margin-left:47px;
+}
+caption
+{
+    caption-side: bottom;
+}
+.n
+{
+    margin-left:102px ;
+}
+.nn
+{
+    margin-left:8px ;
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="/home/manusis/myfirsttraning/firsttranning/jquery-2.0.3.min.js"></script>
 
 </head> <script src="canvas.js"></script>
 <body style="background-color: mediumpurple"> <div id="header" style="background-color: palevioletred ;
@@ -8,7 +9,7 @@
     <script src="canvas.js"></script>
     <marquee> Create a New Account</marquee></h1></div>
 <div style="font-family: verdana;padding: 50px;border-radius: 20px;
-    border: 10px solid darkred; background-color:peachpuff"><div>
+    border: 10px solid darkred; background-color:peachpuff" data-role="page" id="home" data-theme="b"><div>
     <a  href="http://www.google.co.in/search?q=forest+pictures&tbm=isch&tbo=u&source=univ&sa=X&ei=GqAcUuOnEY7KrAfwmYCwBw&sqi=2&ved=0CCkQsAQ&biw=959&bih=682" target="_blank">
         <img src="file:///home/manusis/Pictures/url.jpeg" width="300px" height="300px" align="right"  ></a>
     <iframe width="300px"
@@ -16,11 +17,11 @@
 
     </iframe> </div>
 
-    <form name="input" method="get" >
+    <form name="input" method="get" id="form">
         First Name:<br>
-        <input type="text" name="firstname"  autofocus="autofocus" spellcheck="false" n="2"> <br>
+        <input type="text" name="firstname"  autofocus="autofocus" spellcheck="false" n="2" id="first"> <br>
         Last Name:<br>
-        <input type="text" name="lastname">     <br>
+        <input type="text" name="lastname" id="last">     <br>
         User Name:   <br>
         <input type="email" name="email">       <br>
         password:  <br>
@@ -43,10 +44,15 @@
           Terms of services</span>
         <br>and <span style="color: blue">privacy policy.</span><br><br>
 
-        <input type="submit" value="submit" onclick="message()">
-
+        <input type="submit" value="submit" onclick="editItem()" id="save"/>
+        <input type="button" value="delete" onclick="deleteItem()"/>
+        <input type="submit" value="clear"  id="clear">
 
     </form>
+    <ul id="userDiv">
+        <a href="#home" data-role="button" data-mini="true" data-inline="true"></a>
+    </ul>
+
 </div>
 </form>
 

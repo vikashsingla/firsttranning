@@ -17,21 +17,21 @@
 
     </iframe> </div>
 
-    <form name="input" method="get" >
+    <form name="input" method="get" action="thanku.html" >
         First Name:<br>
-        <input type="text" name="firstname"  autofocus="autofocus" spellcheck="false" n="2" id="first"> <br>
+        <input type="text" name="firstname"  autofocus="autofocus" spellcheck="false" n="2" required="required"> <br>
         Last Name:<br>
-        <input type="text" name="lastname">     <br>
+        <input type="text" name="lastname" required="required">     <br>
         User Name:   <br>
-        <input type="email" name="email">       <br>
+        <input type="email" name="email" required="required">       <br>
         password:  <br>
-        <input type="password" name="password">  <br>
+        <input type="password" name="password" required="required">  <br>
         Conform Your Password:  <br>
-        <input type="password" name="password"> <br>
+        <input type="password" name="password" required="required"> <br>
         Birth Date:<br>
-        <input type="date" name="bday"> <br> <br>
+        <input type="date" name="bday" required="required"> <br> <br>
         Gender:<br>
-        <select >
+        <select  required="required">
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
@@ -39,12 +39,12 @@
 
         your current e-mail address:<br>
 
-        <input type="email" name="email" ><br>
-        <input type="checkbox" id="check">I accept the<span style="color: blue">
+        <input type="email" name="email"  required="required"><br>
+        <input type="checkbox" id="check" required="required">I accept the<span style="color: blue">
           Terms of services</span>
         <br>and <span style="color: blue">privacy policy.</span><br><br>
 
-        <input type="submit" value="submit" class="" >
+        <input type="submit" value="submit" >
         <!--<input type="button" value="delete" onclick="deleteItem()"/>-->
         <!--<input type="submit" value="clear"  id="clear">-->
 

@@ -83,7 +83,7 @@
 //}
 //
 //$("#clear").click(function (e)
-//{
+//{  alert("clear field")
 //    e.preventDefault();
 //    if(localStorage.length === 0)
 //    {
@@ -97,7 +97,7 @@
 //        return false;
 //    }
 //});
-//
+
 
 
 $(document).ready(function()

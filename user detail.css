@@ -75,3 +75,8 @@
     border-radius: 8px;
     margin-left: 810px;
 }
+.logos {
+    margin: 0 20px;
+    height: 50px;
+    min-width:770px;
+}

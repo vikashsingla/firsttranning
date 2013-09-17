@@ -1,0 +1,35 @@
+.wrapper
+{
+    padding:0;
+    margin:0;
+}
+.main
+{
+    height: 1020px;
+    padding-top: 20px;
+    background: #7d7e7d; /* old browsers */
+    color: -moz-linear-gradient(top, #444444 0%, #000000 100%);
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); *//* webkit */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); *//* ie */
+}
+.logos
+{
+    margin: 0 20px;
+    height: 50px;
+    min-width:770px;
+}
+.content
+{
+    width: 745px;
+    margin: 0 auto;
+    padding: 0 33px;
+}
+.body
+{
+    color: rgba(0, 0, 0, 0.8);
+    font: 14px/1.8 "trebuchet ms",sans-serif;
+    color:#333;
+    /*color:#241b12;*/
+    padding:0;
+    margin:0;
+}

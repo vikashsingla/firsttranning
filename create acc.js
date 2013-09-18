@@ -1,23 +1,15 @@
-
-
-
-
-var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,address TEXT,phone INTEGER,gender TEXT)";
+var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT)";
 
 //var selectAllStatement = "SELECT * FROM Contacts";
 
-var insertStatement = "INSERT INTO Contacts (username,lastname, useremail, address, phone,gender) VALUES (?, ?, ?, ?, ?, ?)";
+var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender) VALUES (?, ?, ?, ?, ?,?,?)";
 
-//var dropStatement = "DROP TABLE Contacts";
 var db = openDatabase("AddressBook", "1.0", "Address Book", 200000);  // Open SQLite Database
 
-var dataset;
-//
+//var dataset;
+
 //var DataType;
-//db.transaction(function(tx) {
-//    console.log("in here");
-//    tx.executeSql(dropStatement, [], onError);
-//});
+
 function initDatabase()  // Function Call When Page is ready.
 
 {
@@ -32,8 +24,7 @@ function initDatabase()  // Function Call When Page is ready.
 
         }
 
-        else
-        {
+        else {
 
             createTable();  // If supported then call Function for create table in SQLite
 
@@ -66,14 +57,15 @@ function createTable()  // Function for Create Table in SQLite.
 {
 
     db.transaction(function (tx) {
-    tx.executeSql(createStatement, [], onError);
-     //   console.log(result);
+        tx.executeSql(createStatement, [], onError);
+//        console.log(tx);
 
-});
+    });
 
 }
+createTable();
 
-function onError(tx, error) // Function for Hendeling Error...
+function onError(error) // Function for Hendeling Error...
 
 {
 
@@ -82,25 +74,31 @@ function onError(tx, error) // Function for Hendeling Error...
 }
 
 
-$(document).on('click', '#submitButton', function ()
-{
-
-    var usernametemp = $('input:text[id=username]').val();
-
-    var lastnametemp = $('input:text[id=lastname]').val();
-
-    var useremailtemp = $('input:text[id=useremail]').val();
-
-    var useraddresstemp = $('input:text[id=address]').val();
-
-    var phonetemp = $('input:text[id=phone]').val();
+$(document).on('click', '#submitButton', function () {
 
 
-    var gender = $( "#gender" ).val();
-    console.log(phonetemp);
+    var usernametemp = $('#username').val();
+
+    var lastnametemp = $('#lastname').val();
+
+    var useremailtemp = $('#useremail').val();
+
+    var usercemailtemp = $('#usercemail').val();
+
+    var userpasswordtemp = $('#address').val();
+
+    var usercpasswordtemp = $('#caddress').val();
+
+    var datetemp = $('#phone').val();
+
+    var gender = $("#gender").val();
+
+    console.log(datetemp);
     console.log(usernametemp);
     console.log(useremailtemp);
-    console.log(useraddresstemp);
+    console.log(usercemailtemp);
+    console.log(userpasswordtemp);
+    console.log(usercpasswordtemp);
     console.log(gender);
     console.log(lastnametemp);
 
@@ -109,12 +107,9 @@ $(document).on('click', '#submitButton', function ()
 //        hobbies.push($(this).val());
 //    });
 //    var imagetemp = $('#image').attr('target');
-    db.transaction(function (tx)
-    {
-        tx.executeSql(insertStatement, [usernametemp,lastnametemp, useremailtemp, useraddresstemp, phonetemp, gender], onError);
-       // console.log(tx);
+    db.transaction(function (tx) {
+        tx.executeSql(insertStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender], onError);
+//       console.log(tx);
     });
     return false;
 });
-
-

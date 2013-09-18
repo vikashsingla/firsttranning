@@ -6,12 +6,12 @@
 </head>
 <!--<script src="canvas.js"></script>-->
 
-<body style="background-color: mediumpurple" onlode="initialLoad()"> <div id="header" style="background-color: palevioletred ;
-                    border-radius: 10px; border: 10px solid darkred" ><h1 style="color:white; text-align: center">
+<body style="background-color: mediumpurple">
+   <div id="header" style="background-color: palevioletred ;border-radius: 10px; border: 10px solid darkred" >
+              <h1 style="color:white; text-align: center">
     <!--<script src="lodestorage.js"></script>-->
     <marquee> Create a New Account</marquee></h1></div>
-<div style="font-family: verdana;padding: 50px;border-radius: 20px;
-    border: 10px solid darkred; background-color:peachpuff" ><div>
+  <div style="font-family: verdana;padding: 50px;border-radius: 20px; border: 10px solid darkred; background-color:peachpuff" ><div>
     <a  href="http://www.google.co.in/search?q=forest+pictures&tbm=isch&tbo=u&source=univ&sa=X&ei=GqAcUuOnEY7KrAfwmYCwBw&sqi=2&ved=0CCkQsAQ&biw=959&bih=682" target="_blank">
         <img src="file:///home/manusis/Pictures/url.jpeg" width="300px" height="300px" align="right"  ></a>
     <iframe width="300px"
@@ -19,19 +19,19 @@
 
     </iframe> </div>
 
-    <form name="input" method="get" id="mycontact" >
+    <form name="input" method="get">
         First Name:<br>
         <input type="text" name="firstname" id="username" autofocus="autofocus" spellcheck="false" n="2" required="required"> <br>
         Last Name:<br>
         <input type="text" name="lastname" id="lastname" required="required"  >     <br>
         User Name:   <br>
-        <input type="text" name="email" id="useremail" required="required">       <br>
+        <input type="email" name="email" id="useremail" required="required">       <br>
         password:  <br>
-        <input type="text" name="password" id="address" required="required" >  <br>
+        <input type="password" name="password" id="address" required="required" >  <br>
         Conform Your Password:  <br>
-        <input type="text" name="password" required="required"> <br>
+        <input type="password" name="password" id="caddress" required="required"> <br>
         Birth Date:<br>
-        <input type="text" name="bday" id="phone" required="required" > <br> <br>
+        <input type="date" name="bday" id="phone" required="required" > <br> <br>
         Gender:<br>
         <select  id="gender" required="required" >
             <option value="male">Male</option>
@@ -41,8 +41,7 @@
 
         your current e-mail address:<br>
 
-        <input type="text" name="email"  required="required"
-                ><br>
+        <input type="email" name="email" id="usercemail" required="required"><br>
         <input type="checkbox" name="checked" value="check" required="required" >I accept the<span style="color: blue">
 
           Terms of services</span>

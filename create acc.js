@@ -1,70 +1,120 @@
-/**
- * Created with JetBrains WebStorm.
- * User: manusis
- * Date: 9/17/13
- * Time: 12:59 PM
- * To change this template use File | Settings | File Templates.
- */
-$(document).ready(function() {
-    if (typeof(localStorage) === 'undefined' ) {
-        alert('Your browser does not support HTML5 localStorage. Try upgrading.');
-    } else {
-        //load the items
-        getItems();
-    }
-});
 
-var getItems = function()
+
+
+
+var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,address TEXT,phone INTEGER,gender TEXT)";
+
+//var selectAllStatement = "SELECT * FROM Contacts";
+
+var insertStatement = "INSERT INTO Contacts (username,lastname, useremail, address, phone,gender) VALUES (?, ?, ?, ?, ?, ?)";
+
+//var dropStatement = "DROP TABLE Contacts";
+var db = openDatabase("AddressBook", "1.0", "Address Book", 200000);  // Open SQLite Database
+
+var dataset;
+//
+//var DataType;
+//db.transaction(function(tx) {
+//    console.log("in here");
+//    tx.executeSql(dropStatement, [], onError);
+//});
+function initDatabase()  // Function Call When Page is ready.
+
 {
 
-    var timeLog, logLength, i;
-    i = 0;
-    logLength = localStorage.length-1; //how many items are in the database starting with zero
-    timeLog = '';
+    try {
 
-    //now we are going to loop through each item in the database
-    for (i = 0; i <= logLength; i++)
-    {
-        var itemKey, value, values, firstname, lastname, email, password, date, gender;
-        //lets setup some variables for the key and values
-        itemKey = localStorage.key(i);
+        if (!window.openDatabase)  // Check browser is supported SQLite or not.
 
-        value = localStorage.getItem(itemKey);
-        values = JSON.parse(value);
-        firstname = values.fname;
-        lastname = values.lname;
-        email = values.email;
-        password =values.password;
-        password =values.password;
-        date    =values.bday;
-        gender=values.gender;
+        {
 
-//           console.log(values);
-        //now that we have the item, lets add it to the table
-        timeLog += '<tr id="'+itemKey+'" class="tableRow"><td>'+firstname+'</td><td>'+lastname+'</td><td>'+email+'</td><td>'+password+'</td><td>'+date+'</td><td>'+gender+'<a class="delete" title="Delete Entry" href="#"><img src="file:///home/manusis/Button-Delete-icon.png" width="24" height="24"></a></td></tr>';
+            alert('Databases are not supported in this browser.');
+
+        }
+
+        else
+        {
+
+            createTable();  // If supported then call Function for create table in SQLite
+
+        }
+
     }
 
-    $("#theLog").append(timeLog); //update the table with the list items
+    catch (e) {
 
-    $(".tableRow").mouseenter(function() {
-        $(this).children().children(".delete").show();
-    });
-    $(".tableRow").mouseleave(function() {
-        $(this).children().children(".delete").hide();
-    });
+        if (e == 2) {
 
-    $("#reset_list").click(function()
-    {
-        //alert("clicked");
-        localStorage.clear();
-        getItems();
-    });
+            // Version number mismatch.
 
-    $(".delete").click(function()
-    {
-        var itemId = $(this).parent().parent().attr('id');
-        //alert(itemId);
-        localStorage.removeItem(itemId);
-        getItems();
-    });
+            console.log("Invalid database version.");
+
+        } else {
+
+            console.log("Unknown error " + e + ".");
+
+        }
+
+        return;
+
+    }
+
 }
+
+function createTable()  // Function for Create Table in SQLite.
+
+{
+
+    db.transaction(function (tx) {
+    tx.executeSql(createStatement, [], onError);
+     //   console.log(result);
+
+});
+
+}
+
+function onError(tx, error) // Function for Hendeling Error...
+
+{
+
+    alert(error.message);
+
+}
+
+
+$(document).on('click', '#submitButton', function ()
+{
+
+    var usernametemp = $('input:text[id=username]').val();
+
+    var lastnametemp = $('input:text[id=lastname]').val();
+
+    var useremailtemp = $('input:text[id=useremail]').val();
+
+    var useraddresstemp = $('input:text[id=address]').val();
+
+    var phonetemp = $('input:text[id=phone]').val();
+
+
+    var gender = $( "#gender" ).val();
+    console.log(phonetemp);
+    console.log(usernametemp);
+    console.log(useremailtemp);
+    console.log(useraddresstemp);
+    console.log(gender);
+    console.log(lastnametemp);
+
+//    var hobbies = [];
+//    $('input[name=hobbies]:checked').each(function () {
+//        hobbies.push($(this).val());
+//    });
+//    var imagetemp = $('#image').attr('target');
+    db.transaction(function (tx)
+    {
+        tx.executeSql(insertStatement, [usernametemp,lastnametemp, useremailtemp, useraddresstemp, phonetemp, gender], onError);
+       // console.log(tx);
+    });
+    return false;
+});
+
+

@@ -2,8 +2,8 @@ var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY K
 
 //var selectAllStatement = "SELECT * FROM Contacts";
 
-var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender) VALUES (?, ?, ?, ?, ?,?,?)";
-
+var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender) VALUES (?, ?, ?, ?, ?,?,?,?)";
+var updateStatement = "UPDATE Contacts SET username = ?,lastname = ?, useremail = ?,usercemail = ?, password = ?,cpassword = ? date = ?,gender = ?,WHERE ID = ?";
 var db = openDatabase("AddressBook", "1.0", "Address Book", 200000);  // Open SQLite Database
 
 //var dataset;
@@ -65,6 +65,7 @@ function createTable()  // Function for Create Table in SQLite.
 }
 createTable();
 
+
 function onError(error) // Function for Hendeling Error...
 
 {
@@ -109,6 +110,31 @@ $(document).on('click', '#submitButton', function () {
 //    var imagetemp = $('#image').attr('target');
     db.transaction(function (tx) {
         tx.executeSql(insertStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender], onError);
+//       console.log(tx);
+    });
+    return false;
+});
+$(document).on('click','#updatebutton',function()
+{
+    var usernametemp = $('#username').val();
+
+    var lastnametemp = $('#lastname').val();
+
+    var useremailtemp = $('#useremail').val();
+
+    var usercemailtemp = $('#usercemail').val();
+
+    var userpasswordtemp = $('#address').val();
+
+    var usercpasswordtemp = $('#caddress').val();
+
+    var datetemp = $('#phone').val();
+
+    var gender = $("#gender").val();
+    $("#id").val((item['id']).toString());
+    var useridupdate = $("#id").val();
+    db.transaction(function (tx) {
+        tx.executeSql(updateStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender], onError);
 //       console.log(tx);
     });
     return false;

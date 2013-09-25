@@ -65,13 +65,16 @@ function createTable()  // Function for Create Table in SQLite.
     });
     resetForm();
 }
-createTable();
+//createTable();
 function deleteRecord(id)
 {
+    console.log("??");
  var iddelete = id.toString();
     db.transaction(function(tx){
-     tx.executeSql(deleteStatement,[],showRecords(),onError());
+     tx.executeSql(deleteStatement,[iddelete],showRecords(),onError);
         alert('Deleted record sucessfully');
+        resetForm();
+       // initDatabase();
     });
 }
 function dropTable()
@@ -133,7 +136,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 item = dataset.item(i);
 
-                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '"/>' + '    ' +
+                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '    ' +
 
                     '<a href="#" onclick="deleteRecord(' + item['id'] + ');">delete</a></li></td></tr>';
 
@@ -149,63 +152,66 @@ function showRecords() // Function For Retrive data from Database Display record
 }
 
 
-function loadRecord(id) // Function for display records which are retrived from database.
-
-{
-  console.log("=");
-    $("#submitButton").attr("disabled", "disabled");
-    $("#Updatebutton").removeAttr("disabled");
-
-
-    var item = dataset.item(id);
-
-//      console.log(item) ;
-    $("#username").val((item['username']).toString());
-
-    $("#lastname").val((item['lastname']).toString());
-
-    $("#useremail").val((item['useremail']).toString());
-
-    $("#usercemail").val((item['usercemail']).toString());
-
-    $("#address").val((item['password']).toString());
-
-    $("#caddress").val((item['cpassword']).toString());
-
-    $("#phone").val((item['date']).toString());
-
-    $("#gender").val((item['gender']).toString());
-
-
-
-
-    $("#id").val((item['id']).toString());
-
-    tx.executeSql(updateStatement, [item],onError);
-//       console.log(tx);
-
-
-}
+//function loadRecord(id) // Function for display records which are retrived from database.
+//
+//{
+//  console.log("=");
+////    $("#submitButton").attr("disabled", "disabled");
+////    $("#Updatebutton").removeAttr("disabled");
+//
+//
+//    var item = dataset.item(id);
+//    console.log("id");
+//
+////      console.log(item) ;
+//    $("#username").val((item['username']).toString());
+//
+//    $("#lastname").val((item['lastname']).toString());
+//
+//    $("#useremail").val((item['useremail']).toString());
+//
+//    $("#usercemail").val((item['usercemail']).toString());
+//
+//    $("#address").val((item['password']).toString());
+//
+//    $("#caddress").val((item['cpassword']).toString());
+//
+//    $("#phone").val((item['date']).toString());
+//
+//    $("#gender").val((item['gender']).toString());
+//
+//
+//
+//
+//    $("#id").val((item['id']).toString());
+//
+//    tx.executeSql(updateStatement, [item],onError);
+////       console.log(tx);
+//
+//
+//}
 
 
 function initialLode()
 {
     $("body").fadeIn(2000);
     initDatabase();
-    createTable();
+//    createTable();
 //    $(document).on('change','#color',function(){
 //       $("mycontact").css('background color',$(this).val());
 //    }) ;
 
     $(document).on('change','#detail',function(){
         console.log("==========");
-        for(var i = 0, item = null;i<dataset.length; i++){
+
+        for(var i = 0;i<dataset.length; i++){
             item = dataset.item(i) ;
             if(item.id==$(this).val()){
            alert('welcome' +item.username + "" + item.date + "");
 
         }
         }
+
 
 });
     $(document).on('click', '#submitButton', function ()
@@ -290,7 +296,7 @@ function initialLode()
         });
         return false;
     });
-//    $("#btnUpdate").click(updateRecord);
+//    $("#btnUpdate").click(loadRecord(id));
 
     $("#btnReset").click(resetForm);
 

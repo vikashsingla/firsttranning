@@ -6,7 +6,7 @@
 </head>
 <!--<script src="canvas.js"></script>-->
 
-<body style="background-color: mediumpurple">
+<body style="background-color: mediumpurple" onload="initialLode()">
    <div id="header" style="background-color: palevioletred ;border-radius: 10px; border: 10px solid darkred" >
               <h1 style="color:white; text-align: center">
     <!--<script src="lodestorage.js"></script>-->
@@ -19,7 +19,7 @@
 
     </iframe> </div>
 
-    <form name="input" method="get">
+    <form name="input" method="post" id="mycontact">
         First Name:<br>
         <input type="text" name="firstname" id="username" autofocus="autofocus" spellcheck="false" n="2" required="required"> <br>
           <input type="hidden" id="id"/>
@@ -54,13 +54,17 @@
 
     </form>
     <input type="submit" value="submit" id="submitButton" >
-    <input type="button" value="update" id="updateButton" >
-    <!--<ul id="userDiv">-->
-        <!--<a href="#home" data-role="button" data-mini="true" data-inline="true"></a>-->
-    <!--</ul>-->
+    <input type="submit" value="update" id="updatebutton" >
+    <input type="submit" value="Drop" id="btnDrop" >
+    <input type="submit" value="reset" id="btnReset" >
+      <select id="detail">
+          <option value="select">select</option>
+      </select>
+      <table border="solid" id="results"></table>
+      <output id="list"></output>
 
 </div>
-<!--</form>-->
+
 
 </body>
 </html>

@@ -152,7 +152,7 @@ function showRecords() // Function For Retrive data from Database Display record
 function loadRecord(id) // Function for display records which are retrived from database.
 
 {
-  console.log(loadRecord());
+  console.log("=");
     $("#submitButton").attr("disabled", "disabled");
     $("#Updatebutton").removeAttr("disabled");
 
@@ -210,6 +210,7 @@ function initialLode()
 });
     $(document).on('click', '#submitButton', function ()
     {
+        console.log("========");
          alert("submit all data");
         var usernametemp = $('#username').val();
 
@@ -228,19 +229,19 @@ function initialLode()
         var gender = $("#gender").val();
 //        var useridsubmit = $("id").val();
 
-        console.log(datetemp);
-        console.log(usernametemp);
-        console.log(useremailtemp);
-        console.log(usercemailtemp);
-        console.log(userpasswordtemp);
-        console.log(usercpasswordtemp);
-        console.log(gender);
-        console.log(lastnametemp);
+//        console.log(datetemp);
+//        console.log(usernametemp);
+//        console.log(useremailtemp);
+//        console.log(usercemailtemp);
+//        console.log(userpasswordtemp);
+//        console.log(usercpasswordtemp);
+//        console.log(gender);
+//        console.log(lastnametemp);
 //        console.log(useridsubmit);
 
 
    db.transaction(function (tx){
-            tx.executeSql(insertStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender],loadandreset(),onError);
+            tx.executeSql(insertStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender],showRecords(),onError);
 //       console.log(tx);
         });
 
@@ -252,7 +253,7 @@ function initialLode()
 
     {
 
-//    console.log('=================');
+
         var usernametemp = $('#username').val();
 
         var lastnametemp = $('#lastname').val();

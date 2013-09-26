@@ -3,7 +3,7 @@ var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY K
 var selectAllStatement = "SELECT * FROM Contacts ";
 
 var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender) VALUES (?, ?, ?, ?, ?,?,?,?)";
-var updateStatement = "UPDATE Contacts SET username = ?,lastname = ?, useremail = ?,usercemail = ?, password = ?,cpassword = ? date = ?,gender = ?, WHERE id = ?";
+var updateStatement = "UPDATE Contacts SET username = ?,lastname = ?, useremail = ?,usercemail = ?, password = ?,cpassword = ? date = ?,gender = ? WHERE id = ?";
 var deleteStatement = "DELETE FROM Contacts WHERE id=?";
 var dropStatement = "DROP TABLE Contacts";
 var db = openDatabase("AddressBook", "1.0", "Address Book", 200000);  // Open SQLite Database
@@ -68,20 +68,20 @@ function createTable()  // Function for Create Table in SQLite.
 //createTable();
 function deleteRecord(id)
 {
-    console.log("??");
- var iddelete = id.toString();
+    console.log("dr");
+    var iddelete = id.toString();
     db.transaction(function(tx){
-     tx.executeSql(deleteStatement,[iddelete],showRecords(),onError);
+        tx.executeSql(deleteStatement,[iddelete],showRecords(),onError);
         alert('Deleted record sucessfully');
         resetForm();
-       // initDatabase();
+        // initDatabase();
     });
 }
 function dropTable()
 {
     alert("delete all data");
     db.transaction(function(tx){
-     tx.executeSql(dropStatement,[],showRecords(),onError);
+        tx.executeSql(dropStatement,[],showRecords(),onError);
     });
     resetForm();
     initDatabase();
@@ -89,15 +89,18 @@ function dropTable()
 function resetForm()
 
 {
-    console.log("===");
- $("#username").val("");
- $("#lastname").val("");
- $("#useremail").val("");
- $("#address").val("");
- $("#caddress").val("");
- $("#phone").val("");
- $("#gender").val("");
- $("#id").val("");
+    console.log("rf");
+
+
+    $("#username").val("");
+    $("#lastname").val("");
+    $("#useremail").val("");
+    $("#usercemail").val("");
+    $("#address").val("");
+    $("#caddress").val("");
+    $("#phone").val("");
+    $("#gender").val("");
+    $("#id").val("");
 }
 
 
@@ -202,22 +205,22 @@ function initialLode()
 //    }) ;
 
     $(document).on('change','#detail',function(){
-        console.log("==========");
+        console.log("se");
 
         for(var i = 0;i<dataset.length; i++){
             item = dataset.item(i) ;
             if(item.id==$(this).val()){
-           alert('welcome' +item.username + "" + item.date + "");
+                alert('welcome' +item.username + "" + item.date + "");
 
+            }
         }
-        }
 
 
-});
+    });
     $(document).on('click', '#submitButton', function ()
     {
-        console.log("========");
-         alert("submit all data");
+        console.log("sb");
+        alert("submit all data");
         var usernametemp = $('#username').val();
 
         var lastnametemp = $('#lastname').val();
@@ -246,18 +249,28 @@ function initialLode()
 //        console.log(useridsubmit);
 
 
-   db.transaction(function (tx){
+        db.transaction(function (tx){
             tx.executeSql(insertStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender],showRecords(),onError);
 //       console.log(tx);
         });
 
-        return false;
+//        return false;
     });
+//    function update(id)
+//    {
+//        var idupdate = id.toString();
+//        db.transaction(function(tx){
+//            tx.executeSql(updateStatement,[idupdate],loadandreset(),onError);
+//            console.log("////");
+//        })
+//    }
 
 
-    $(document).on('click','#updatebutton',function()
+    $(document).on('change','#btnUpdate',function()
 
     {
+
+        console.log("ub");
 
 
         var usernametemp = $('#username').val();
@@ -275,6 +288,7 @@ function initialLode()
         var datetemp = $('#phone').val();
 
         var gender = $("#gender").val();
+
 
         console.log(datetemp);
         console.log(usernametemp);
@@ -294,14 +308,14 @@ function initialLode()
             tx.executeSql(updateStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender,useridupdate],loadandreset(),onError);
 //      console.log(tx);
         });
-        return false;
+//        $("#submitButton").removeAttr("disabled");
     });
-//    $("#btnUpdate").click(loadRecord(id));
+//    $("#btnUpdate").click(update(id));
 
     $("#btnReset").click(resetForm);
 
     $("#btnDrop").click(dropTable);
-    return false;
+//    return false;
 
 
 }

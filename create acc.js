@@ -3,12 +3,12 @@ var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY K
 var selectAllStatement = "SELECT * FROM Contacts ";
 
 var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender) VALUES (?, ?, ?, ?, ?,?,?,?)";
-var updateStatement = "UPDATE Contacts SET username = ?,lastname = ?, useremail = ?,usercemail = ?, password = ?,cpassword = ? date = ?,gender = ? WHERE id = ?";
+var updateStatement = "UPDATE Contacts SET username = ?, lastname = ?, useremail = ?,usercemail = ?, password = ?, cpassword = ?, date = ?,gender = ? WHERE id = ?";
 var deleteStatement = "DELETE FROM Contacts WHERE id=?";
 var dropStatement = "DROP TABLE Contacts";
 var db = openDatabase("AddressBook", "1.0", "Address Book", 200000);  // Open SQLite Database
 
-var dataset = {};
+var dataset ;
 
 //var DataType;
 
@@ -139,7 +139,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 item = dataset.item(i);
 
-                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '    ' +
+                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '    ' + '<a href="#" onclick="loadRecord(' + i + ');">edit</a>' + '    ' +
 
                     '<a href="#" onclick="deleteRecord(' + item['id'] + ');">delete</a></li></td></tr>';
 
@@ -155,44 +155,44 @@ function showRecords() // Function For Retrive data from Database Display record
 }
 
 
-//function loadRecord(id) // Function for display records which are retrived from database.
-//
-//{
-//  console.log("=");
-////    $("#submitButton").attr("disabled", "disabled");
-////    $("#Updatebutton").removeAttr("disabled");
-//
-//
-//    var item = dataset.item(id);
-//    console.log("id");
-//
-////      console.log(item) ;
-//    $("#username").val((item['username']).toString());
-//
-//    $("#lastname").val((item['lastname']).toString());
-//
-//    $("#useremail").val((item['useremail']).toString());
-//
-//    $("#usercemail").val((item['usercemail']).toString());
-//
-//    $("#address").val((item['password']).toString());
-//
-//    $("#caddress").val((item['cpassword']).toString());
-//
-//    $("#phone").val((item['date']).toString());
-//
-//    $("#gender").val((item['gender']).toString());
-//
-//
-//
-//
-//    $("#id").val((item['id']).toString());
-//
+function loadRecord(id) // Function for display records which are retrived from database.
+
+{
+  console.log("=");
+    $("#submitButton").attr("disabled", "disabled");
+//    $("#updatebutton").removeAttr("disabled");
+
+
+    var item = dataset.item(id);
+    console.log(id);
+
+//      console.log(item) ;
+    $("#username").val(item['username']);
+
+    $("#lastname").val(item['lastname']);
+
+    $("#useremail").val(item['useremail']);
+
+    $("#usercemail").val(item['usercemail']);
+
+    $("#address").val(item['password']);
+
+    $("#caddress").val(item['cpassword']);
+
+    $("#phone").val(item['date']);
+
+    $("#gender").val(item['gender']);
+
+
+
+
+    $("#id").val(item['id']).toString();
+
 //    tx.executeSql(updateStatement, [item],onError);
-////       console.log(tx);
-//
-//
-//}
+//       console.log(tx);
+
+
+}
 
 
 function initialLode()
@@ -266,7 +266,7 @@ function initialLode()
 //    }
 
 
-    $(document).on('change','#btnUpdate',function()
+    $(document).on('click','#updatebutton',function()
 
     {
 
@@ -308,14 +308,14 @@ function initialLode()
             tx.executeSql(updateStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender,useridupdate],loadandreset(),onError);
 //      console.log(tx);
         });
-//        $("#submitButton").removeAttr("disabled");
+
     });
-//    $("#btnUpdate").click(update(id));
+
 
     $("#btnReset").click(resetForm);
 
     $("#btnDrop").click(dropTable);
-//    return false;
+    return false;
 
 
 }

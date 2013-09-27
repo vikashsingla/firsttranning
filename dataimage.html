@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--<script src="/home/manusis/myfirsttraning/firsttranning/jquery-2.0.3.min.js"></script>-->
+    <script src="/home/manusis/myfirsttraning/firsttranning/jquery-2.0.3.min.js"></script>
 
 </head>
 <body>
@@ -13,6 +13,7 @@
 </div>
 <div id="remove">
     <button type="button" onclick="removeimage()" value="remove" >Delete</button>
+    <button type="button" onclick="update()" value="update" >Update</button>
 </div>
 
 <!--<button id="handleFile()" >Show</button>-->
@@ -22,6 +23,9 @@
     var fileSelect = document.getElementById("fileSelect"),
             fileElem = document.getElementById("fileElem"),
             fileList = document.getElementById("fileList");
+
+
+
 
     fileSelect.addEventListener("click", function (e) {
         if (fileElem) {
@@ -59,9 +63,15 @@
     function removeimage()
     {
         var img =document.getElementById("fileList");
-        img.selectedIndex="";
+
         img.remove(img.selectedIndex);
         console.log(img);
     }
+//    function update()
+//    {
+//            var img = document.getElementsByTagName('img');
+//             img.getElementsByTagName('li').innerHTML="files[i]";
+//        console.log(img);
+//    }
 </script>
 </html>

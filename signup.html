@@ -2,7 +2,15 @@
 <html>
 <head>
     <script src="/home/manusis/myfirsttraning/firsttranning/jquery-2.0.3.min.js"></script>
-    <script src="create%20acc.js"></script>
+    <!--<script src="lib/angular/angular.js"></script>-->
+    <style>
+        .thumb {
+            height: 75px;
+            border: 1px solid red;
+            margin: 10px 5px 0 0;
+        }
+
+    </style>
 
 
 </head>
@@ -13,7 +21,7 @@
               <h1 style="color:white; text-align: center">
     <!--<script src="lodestorage.js"></script>-->
     <marquee> Create a New Account</marquee></h1></div>
-  <div style="font-family: verdana;padding: 50px;border-radius: 20px; border: 10px solid darkred; background-color:peachpuff" ><div>
+  <div style="font-family: verdana;padding: 50px;border-radius: 20px; border: 10px solid darkred; background-color:skyblue" ><div>
     <a  href="http://www.google.co.in/search?q=forest+pictures&tbm=isch&tbo=u&source=univ&sa=X&ei=GqAcUuOnEY7KrAfwmYCwBw&sqi=2&ved=0CCkQsAQ&biw=959&bih=682" target="_blank">
         <img src="file:///home/manusis/Pictures/url.jpeg" width="300px" height="300px" align="right"  ></a>
 
@@ -43,17 +51,22 @@
         your current e-mail address:<br>
 
         <input type="email" name="email" id="usercemail" required="required"><br>
-        <input type="checkbox" name="checked" value="check" required="required" >I accept the<span style="color: blue">
+        <label for="image">Profile image</label><br>
+        <input type="file" id="image" name="files" multiple/> <div id="img" ><img id="preview" src=" "> </div> <br>
 
-          Terms of services</span>
-        <br>and <span style="color: blue">privacy policy.</span><br><br>
+        <label>Multiple Checkboxes</label>  <br>
 
-    </form>
+        <input type="checkbox" name="hobbies" value="Dancing">Dancing<br>
+        <input type="checkbox" name="hobbies" value="Playing">Playing<br>
+        <input type="checkbox" name="hobbies" value="Singing">Singing<br>
+    </form> <br>
+
     <input type="submit" value="submit" id="submitButton" >
     <input type="submit" value="update" id="updatebutton" >
     <input type="submit" value="Drop" id="btnDrop" >
     <input type="submit" value="reset" id="btnReset" >
-      <select id="detail">
+
+      <select id="select">
           <option value="select">select</option>
       </select>
       <table border="solid" id="results"></table>
@@ -61,6 +74,6 @@
 
 </div>
 
-
+   <script src="data.js"></script>
 </body>
 </html>

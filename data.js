@@ -1,20 +1,29 @@
+/**
+ * Created with JetBrains WebStorm.
+ * User: manusis
+ * Date: 10/10/13
+ * Time: 5:03 PM
+ * To change this template use File | Settings | File Templates.
+ */
 var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,hobbies TEXT,image BLOB)";
 
 var selectAllStatement = "SELECT * FROM Contacts";
 
 var insertStatement = "INSERT INTO Contacts (username,lastname, useremail,usercemail, password,cpassword,date,gender,hobbies,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 var updateStatement = "UPDATE Contacts SET username = ?, lastname = ?, useremail = ?,usercemail = ?, password = ?, cpassword = ?, date = ?,gender = ?,hobbies = ?,image = ? WHERE id = ?";
+
 var deleteStatement = "DELETE FROM Contacts WHERE id=?";
+
 var dropStatement = "DROP TABLE Contacts";
+
 var db = openDatabase("AddressBook", "1.0", "Address Book", 2000);  // Open SQLite Database
 
 var dataset ;
 
 //var DataType;
 
-function initDatabase()  // Function Call When Page is ready.
-
-{
+function initDatabase(){
 
     try {
 
@@ -54,9 +63,7 @@ function initDatabase()  // Function Call When Page is ready.
 
 }
 
-function createTable()  // Function for Create Table in SQLite.
-
-{
+function createTable(){
 
     db.transaction(function (tx) {
         tx.executeSql(createStatement, [],showRecords(), onError());
@@ -77,8 +84,7 @@ function deleteRecord(id)
 
     });
 }
-function dropTable()
-{
+function dropTable(){
     alert("delete all data");
     db.transaction(function(tx){
         tx.executeSql(dropStatement,[],showRecords(),onError());
@@ -112,7 +118,7 @@ function loadandreset(){
 
 function onError(){
 
-    alert("I am in error");
+//    alert("I am in error");
 
 }
 function showRecords(){
@@ -120,7 +126,7 @@ function showRecords(){
     db.transaction(function (tx) {
         tx.executeSql(selectAllStatement, [], function (tx, result){
 
-             console.log(result);
+            console.log(result);
             dataset = result.rows;
 
 //            console.log(result.rows);
@@ -129,14 +135,14 @@ function showRecords(){
 
                 item = dataset.item(i);
                 console.log(item);
-                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '<img class="thumb" src="' + item['image'] + '"/>'  + '  ' + '<a href="#" onclick="loadRecord(' + i + ');">edit</a>' + '    ' +
-                                     '<a href="#" onclick="deleteRecord(' + item['id'] + ');">delete</a></li></td></tr>';
+                var linkeditdelete = '<tr><td><li>' + item['username'] + ' , '+item['lastname'] + ' , ' + item['useremail'] + ' , '+ item['usercemail'] + ' , ' + item['password'] + ' , ' + item['cpassword'] + ' , ' + item['date'] + ' , ' + item['gender'] + ' , ' + '<img class="thumb" src="' + item['image'] + '"/>' + ' , ' + item['hobbies']  + '  ' + '<a href="#" onclick="loadRecord(' + i + ');">edit</a>' + '    ' +
+                    '<a href="#" onclick="deleteRecord(' + item['id'] + ');">delete</a></li></td></tr>';
 //                console.log(linkeditdelete);
-                  $("#results").append(linkeditdelete);
+                $("#results").append(linkeditdelete);
 
-                }
+            }
 
-       });
+        });
         createOption();
     });
 
@@ -278,9 +284,9 @@ function initialLode(){
         console.log("I am in update form");
 //        if(valid()==1)
 //        {
-            $('image').change(function(event){
-                handleFileSelect(event);
-            });
+        $('image').change(function(event){
+            handleFileSelect(event);
+        });
 //        }
         var usernametemp = $('#username').val();
 
@@ -318,9 +324,9 @@ function initialLode(){
         var useridupdate = $("#id").val();
 //        console.log(useridupdate);
         db.transaction(function (tx){
-            tx.executeSql(updateStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender,imageupdate,useridupdate,hobbies],loadandreset(),onError());
+            tx.executeSql(updateStatement, [usernametemp, lastnametemp, useremailtemp,usercemailtemp, userpasswordtemp,usercpasswordtemp, datetemp, gender,imageupdate,hobbies,useridupdate],loadandreset(),onError());
         });
-     $('#preview').hide();
+        $('#preview').hide();
         $("#submitButton").removeAttr("disabled");
     });
 

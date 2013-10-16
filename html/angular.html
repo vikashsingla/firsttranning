@@ -23,8 +23,8 @@
     </style>
 
 </head>
-<body ng-controller="Controller">
-
+<body >
+  <div ng-controller="Controller">
  <div id="header" class="header">
     <h1><marquee> Create a New Account</marquee></h1>
  </div>
@@ -52,9 +52,9 @@
             <option value="other">Other</option>
         </select><br>
         <label>Multiple Checkboxes</label>  <br>
-        <input type="checkbox" ng-model="hobbies" value="Dancing"/>Dancing<br>
-        <input type="checkbox" ng-model="hobbies" value="Playing"/>Playing<br>
-        <input type="checkbox" ng-model="hobbies" value="Singing"/>Singing<br>
+        <input type="checkbox" ng-model="hobbies" ng-true-value="Dancing" ng-false-value="no"/>Dancing<br>
+        <input type="checkbox" ng-model="hobbies" ng-true-value="Playing" ng-false-value="no"/>Playing<br>
+        <input type="checkbox" ng-model="hobbies" ng-true-value="Singing" ng-false-value="no"/>Singing<br>
  <div class="container" id="file-list"> <br>
             <label><b>Upload Image</b></label> <br>
             <input id="files-upload" type="file">
@@ -77,7 +77,7 @@
         <th>hobbies</th>
         <th>Uploaded image</th>
 
-        <tr ng-repeat = "users in master " ng-class-even="'even'" >
+        <tr ng-repeat = "users in master" ng-class-even="'even'" >
             <td>{{users.id}}.</td>
             <td>{{users.username|uppercase}}</td>
             <td>{{users.lastname}}</td>
@@ -92,7 +92,11 @@
 
             <td> <button  ng-click="editContact(users.id)">Edit</button>
                 <button  ng-click="deleteContact(users.id)"> <img src="./img/images.jpg" height="15" width="30"/>Delete</button></td>
+            <button ng-click="showRecord()">Show Record</button>
         </tr>
     </table>
+<script src="/home/manusis/database angular/database angular/js/fileUpload.js"></script>
+  </div>
+
 </body>
 </html>

@@ -13,25 +13,26 @@ function Controller($scope){
     $scope.db=openDatabase($scope.Name,$scope.version,$scope.displayName,$scope.maxSizeInBytes);
 
      $scope.createtable = function(){
-//           console.log("i am n create");
+
            $scope.createsql="CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,image,hobbies TEXT)";
            $scope.db.transaction(function(tx){
-//               console.log('in create statement');
-               tx.executeSql($scope.createsql,[]);
-               console.log('fff');
+
+               tx.executeSql($scope.createsql,[],window.location.reload());
+
            });
        };
     $scope.insertRecords=function(){
-//        console.log("i m here");
+
         $scope.createtable();
         $scope.bday=document.getElementById('bday').value;
+
         $scope.insertsql="INSERT INTO Contacts (username,lastname,useremail,usercemail,password,cpassword,date,gender,hobbies,image) VALUES(?,?,?,?,?,?,?,?,?,?)";
-//        if ($scope.user.$valid) {
+//       if ($scope.master.$valid) {
         $scope.db.transaction(function(tx){
-                 tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender,$scope.hobbies, document.getElementById('uploadImg').src],
-                     $scope.showRecord(),window.location.reload());
-//                 console.log('in here222');
-//
+                 tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender, document.getElementById('uploadImg').src,$scope.hobbies],
+                     window.location.reload());
+
+
              });
 //        }
     };
@@ -42,21 +43,22 @@ function Controller($scope){
         });
     };
     $scope.showRecord=function(){
+
          $scope.selectAllStatement="SELECT * FROM Contacts";
         $scope.db.transaction(function(tx){
             console.log("i am in sr");
             tx.executeSql($scope.selectAllStatement,[],$scope.showRecords());
+
         });
     };
-//        $scope.showRecord();
-           $scope.showRecords=function(result){
-//               console.log('i m in show');
-            $scope.dataset = result.rows;
-            $scope.master=[dataset];
-               for ( var i = 0;i < dataset.length; i++)
+        $scope.showRecord();
+           $scope.showRecords=function(tx,result){
+            $scope.master=[];
+               for ( var i = 0;i < result.rows.length; i++)
                {
-                   $scope.master.push(dataset.item(i));
-                   console.log('i m in show');
+                   $scope.master.push(result.rows.item(i));
+
+
                }
            };
 

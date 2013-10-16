@@ -18,7 +18,7 @@ function Controller($scope){
            $scope.db.transaction(function(tx){
 //               console.log('in create statement');
                tx.executeSql($scope.createsql,[]);
-//               console.log();
+               console.log('fff');
            });
        };
     $scope.insertRecords=function(){

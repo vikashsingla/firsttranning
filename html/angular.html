@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Use of angularjs</title>
+
+    <script src="/home/manusis/database angular/lib/angular/angular.min.js"></script>
+    <script src="/home/manusis/database angular/js/data.js"></script>
+    <style>
+      body{
+          background-color: mediumpurple;
+      }
+        .header
+        {
+            background-color: palevioletred;
+            border-radius: 10px;
+            border: 10px solid darkred;
+        }
+        h1
+        {
+            color:white;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body ng-controller="Controller">
+
+ <div id="header" class="header">
+    <h1><marquee> Create a New Account</marquee></h1>
+ </div>
+
+    <form name="input" method="post">
+        First Name:<br>
+        <input type="text" ng-model="username" name="firstname"/> <br>
+        <input type="hidden" ng-model="id"/>
+        Last Name:<br>
+        <input type="text" id="bday" ng-model="lastname" name="lastname"/>     <br>
+        User Email:   <br>
+        <input type="email" ng-model="useremail" name="useremail"/>       <br>
+        your current e-mail address:<br>
+        <input type="email" ng-model="usercemail"  name="usercemail"/><br>
+        password:  <br>
+        <input type="password" ng-model="password"/>  <br>
+        Conform Your Password:  <br>
+        <input type="password" ng-model="cpassword"/> <br>
+        Birth Date:<br>
+        <input type="date" ng-model="date" name="bday"/> <br> <br>
+        Gender:<br>
+        <select ng-model="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+        <label>Multiple Checkboxes</label>  <br>
+        <input type="checkbox" ng-model="hobbies" value="Dancing"/>Dancing<br>
+        <input type="checkbox" ng-model="hobbies" value="Playing"/>Playing<br>
+        <input type="checkbox" ng-model="hobbies" value="Singing"/>Singing<br>
+ <div class="container" id="file-list"> <br>
+            <label><b>Upload Image</b></label> <br>
+            <input id="files-upload" type="file">
+            <img id="uploadImg" ng-modal="imageSrc"  ng-src="{{imageSrc}}" style="width:100px;">
+ </div > <br>
+    </form> <br>
+            <input type="submit" value="submit" ng-click="insertRecords()">
+            <input type="submit" value="update" ng-click="updateContact()">
+            <input type="submit" value="Drop" ng-click="dropTable()"> <br>
+            <table width="100%" border="1" >
+        <th>Id</th>
+        <th>username</th>
+        <th>lastname</th>
+        <th>useremail</th>
+        <th>usercemail</th>
+        <th>password</th>
+        <th>cpassword</th>
+        <th>date</th>
+        <th>gender</th>
+        <th>hobbies</th>
+        <th>Uploaded image</th>
+
+        <tr ng-repeat = "users in master " ng-class-even="'even'" >
+            <td>{{users.id}}.</td>
+            <td>{{users.username|uppercase}}</td>
+            <td>{{users.lastname}}</td>
+            <td>{{users.useremail}}</td>
+            <td>{{users.usercemail}}</td>
+            <td>{{users.password}}</td>
+            <td>{{users.cpassword}}</td>
+            <td>{{users.datel}}</td>
+            <td>{{users.gender}}</td>
+            <td>{{users.hobbies}}</td>
+            <td><img ng-src="{{users.image}}" style="width:90px;"></td>
+
+            <td> <button  ng-click="editContact(users.id)">Edit</button>
+                <button  ng-click="deleteContact(users.id)"> <img src="./img/images.jpg" height="15" width="30"/>Delete</button></td>
+        </tr>
+    </table>
+</body>
+</html>

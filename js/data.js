@@ -17,7 +17,7 @@ function Controller($scope){
            $scope.createsql="CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,image,hobbies TEXT)";
            $scope.db.transaction(function(tx){
 
-               tx.executeSql($scope.createsql,[],window.location.reload());
+               tx.executeSql($scope.createsql,[]);
 
            });
        };
@@ -30,7 +30,7 @@ function Controller($scope){
 //       if ($scope.master.$valid) {
         $scope.db.transaction(function(tx){
                  tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender, document.getElementById('uploadImg').src,$scope.hobbies],
-                     window.location.reload());
+                     $scope.showRecord,window.location.reload());
 
 
              });

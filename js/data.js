@@ -12,52 +12,51 @@ function Controller($scope){
     $scope.maxSizeInBytes=20000;
     $scope.db=openDatabase($scope.Name,$scope.version,$scope.displayName,$scope.maxSizeInBytes);
 
-     $scope.createtable = function(){
-           $scope.createsql="CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,image,hobbies TEXT)";
-           $scope.db.transaction(function(tx){
-               tx.executeSql($scope.createsql,[]);
-
-           });
-       };
+    $scope.createtable = function(){
+        $scope.createsql="CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,image,hobbies TEXT)";
+        $scope.db.transaction(function(tx){
+            tx.executeSql($scope.createsql,[]);
+        });
+    };
     $scope.insertRecords=function(){
-
+        alert('save data');
         $scope.createtable();
         $scope.bday=document.getElementById('bday').value;
-
         $scope.insertsql="INSERT INTO Contacts (username,lastname,useremail,usercemail,password,cpassword,date,gender,hobbies,image) VALUES(?,?,?,?,?,?,?,?,?,?)";
-//       if ($scope.master.$valid) {
         $scope.db.transaction(function(tx){
-                 tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender, document.getElementById('uploadImg').src,$scope.hobbies],window.location.reload());
-             });
-//        }
+            tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender,$scope.hobbies, document.getElementById('uploadImg').src],
+                window.location.reload());
+
+        });
+
     };
     $scope.dropTable=function(){
-      $scope.dropsql="DROP TABLE Contacts";
+        $scope.dropsql="DROP TABLE Contacts";
         $scope.db.transaction(function(tx){
             tx.executeSql($scope.dropsql,[],window.location.reload());
         });
     };
     $scope.showRecord=function(){
-
-         $scope.selectAllStatement="SELECT * FROM Contacts";
+        console.log('in show');
+        alert('show data');
+        $scope.selectAllStatement="SELECT * FROM Contacts";
         $scope.db.transaction(function(tx){
-            console.log("i am in sr");
-            tx.executeSql($scope.selectAllStatement,[],$scope.showRecords());
-
+            tx.executeSql($scope.selectAllStatement,[],$scope.showRecords);
         });
     };
-        $scope.showRecord();
-           $scope.showRecords=function(tx,result){
-            $scope.master=[];
-               for ( var i = 0;i < result.rows.length; i++)
-               {
-                   $scope.master.push(result.rows.item(i));
+    $scope.showRecord();
+    $scope.showRecords = function(transaction, result) {
+        $scope.master = [];
+        for ( var i = 0; i < result.rows.length; i++)
+        {
+            $scope.master.push(result.rows.item(i));
+        }
 
+    };
 
-               }
-           };
 
     $scope.deleteContact = function(id) {
+        console.log("i am in delete");
         $scope.deleteStatement = "DELETE FROM Contacts where id=" + id;
         $scope.db.transaction(function(tx) {
             tx.executeSql($scope.deleteStatement, [],window.location.reload());
@@ -65,9 +64,9 @@ function Controller($scope){
         console.log("delete executed");
     };
     $scope.editContact = function(id) {
+        console.log("i am in edit");
         for ( var i in $scope.master) {
             if ($scope.master[i].id == id) {
-                console.log("log in here");
                 $scope.id = id;
                 $scope.username = $scope.master[i].username;
                 $scope.lastname = $scope.master[i].lastname;
@@ -85,7 +84,7 @@ function Controller($scope){
         }
     };
     $scope.updateContact = function() {
-        console.log("in here");
+        console.log("in update");
         $scope.updateStatement = "UPDATE Contacts SET username = ?, lastname = ?, useremail = ?,usercemail = ?, password = ?, cpassword = ?, date = ?,gender = ?,hobbies = ?,image = ? WHERE id = ?";
         $scope.db.transaction(function(transaction) {
             transaction.executeSql($scope.updateStatement,

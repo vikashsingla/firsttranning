@@ -13,10 +13,8 @@ function Controller($scope){
     $scope.db=openDatabase($scope.Name,$scope.version,$scope.displayName,$scope.maxSizeInBytes);
 
      $scope.createtable = function(){
-
            $scope.createsql="CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT,lastname TEXT, useremail TEXT,usercemail TEXT,password TEXT,cpassword TEXT,date INTEGER,gender TEXT,image,hobbies TEXT)";
            $scope.db.transaction(function(tx){
-
                tx.executeSql($scope.createsql,[]);
 
            });
@@ -29,10 +27,7 @@ function Controller($scope){
         $scope.insertsql="INSERT INTO Contacts (username,lastname,useremail,usercemail,password,cpassword,date,gender,hobbies,image) VALUES(?,?,?,?,?,?,?,?,?,?)";
 //       if ($scope.master.$valid) {
         $scope.db.transaction(function(tx){
-                 tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender, document.getElementById('uploadImg').src,$scope.hobbies],
-                     $scope.showRecord,window.location.reload());
-
-
+                 tx.executeSql($scope.insertsql, [$scope.username,$scope.lastname, $scope.useremail,$scope.usercemail,$scope.password,$scope.cpassword,$scope.date,$scope.gender, document.getElementById('uploadImg').src,$scope.hobbies],window.location.reload());
              });
 //        }
     };

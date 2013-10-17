@@ -2,51 +2,39 @@
 <html ng-app>
 <head>
     <title>Use of angularjs</title>
-
-    <script src="/home/manusis/database angular/lib/angular/angular.min.js"></script>
+    <link href="/home/manusis/database angular/database angular/css/data.css" rel="stylesheet" media="screen" >
+    <link href="/home/manusis/database angular/database angular/css/css/bootstrap.min.css" rel="stylesheet" media="screen" >
+    <link href="/home/manusis/database angular/database angular/css/css/bootstrap.css" rel="stylesheet" media="screen" >
+    <script src="/home/manusis/database angular/lib/angular/angular.min.js" ></script>
     <script src="/home/manusis/database angular/js/data.js"></script>
-    <style>
-      body{
-          background-color: mediumpurple;
-      }
-        .header
-        {
-            background-color: palevioletred;
-            border-radius: 10px;
-            border: 10px solid darkred;
-        }
-        h1
-        {
-            color:white;
-            text-align: center;
-        }
-    </style>
+    <script src="/home/manusis/database angular/database angular/js/js/bootstrap.js"></script>
+    <script src="/home/manusis/database angular/database angular/js/js/bootstrap.min.js"></script>
 
 </head>
-<body >
+<body class="body" >
   <div ng-controller="Controller">
  <div id="header" class="header">
     <h1><marquee> Create a New Account</marquee></h1>
  </div>
-
-    <form name="input" method="post">
-        First Name:<br>
-        <input type="text" ng-model="username" name="firstname"/> <br>
+     <div class="container">
+    <form name="input" method="post" class="form-signin">
+        <label>First Name:</label><br>
+        <input type="text" ng-model="username" name="firstname" placeholder="Enter the Name" class="form-control" autofocus/> <br>
         <input type="hidden" ng-model="id"/>
         Last Name:<br>
-        <input type="text" id="bday" ng-model="lastname" name="lastname"/>     <br>
+        <input type="text" id="bday" ng-model="lastname" name="lastname" placeholder="Enter the Lastname" class="form-control"/>     <br>
         User Email:   <br>
-        <input type="email" ng-model="useremail" name="useremail"/>       <br>
+        <input type="email" ng-model="useremail" name="useremail" placeholder="xxx@example.com" class="form-control"/>       <br>
         your current e-mail address:<br>
-        <input type="email" ng-model="usercemail"  name="usercemail"/><br>
+        <input type="email" ng-model="usercemail"  name="usercemail" placeholder="xxx@example.com" class="form-control"/><br>
         password:  <br>
-        <input type="password" ng-model="password"/>  <br>
+        <input type="password" ng-model="password" placeholder="password" class="form-control"/>  <br>
         Conform Your Password:  <br>
-        <input type="password" ng-model="cpassword"/> <br>
+        <input type="password" ng-model="cpassword" placeholder="password" class="form-control"/> <br>
         Birth Date:<br>
-        <input type="date" ng-model="date" name="bday"/> <br> <br>
+        <input type="date" ng-model="date" name="bday" class="form-control"/> <br> <br>
         Gender:<br>
-        <select ng-model="gender">
+        <select ng-model="gender" class="form-control">
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
@@ -55,16 +43,17 @@
         <input type="checkbox" ng-model="hobbies" ng-true-value="Dancing" ng-false-value="no"/>Dancing<br>
         <input type="checkbox" ng-model="hobbies" ng-true-value="Playing" ng-false-value="no"/>Playing<br>
         <input type="checkbox" ng-model="hobbies" ng-true-value="Singing" ng-false-value="no"/>Singing<br>
- <div class="container" id="file-list"> <br>
+ <div id="file-list"> <br>
             <label><b>Upload Image</b></label> <br>
             <input id="files-upload" type="file">
             <img id="uploadImg" ng-modal="imageSrc"  ng-src="{{imageSrc}}" style="width:100px;">
  </div > <br>
+
     </form> <br>
-            <input type="submit" value="submit" ng-click="insertRecords()">
-            <button ng-click="showRecord()">Show Record</button>
-            <input type="submit" value="update" ng-click="updateContact()">
-            <input type="submit" value="Drop" ng-click="dropTable()"> <br>
+            <input type="submit" class="btn btn-default" value="submit" ng-click="insertRecords()">
+            <button class="btn btn-success" ng-click="showRecord()">Show Record</button>
+            <input type="submit" class="btn btn-primary" value="update" ng-click="updateContact()">
+            <input type="submit" class="btn btn-danger" value="Drop" ng-click="dropTable()"> </div><br> <br>
             <table width="100%" border="1" >
         <th>Id</th>
         <th>username</th>
@@ -78,8 +67,8 @@
         <th>hobbies</th>
         <th>Uploaded image</th>
 
-        <tr ng-repeat = "users in master" ng-class-even="'even'" >
-            <td>{{users.id}}.</td>
+        <tr ng-repeat = "users in master" ng-class-even="'even'" ng-class-odd="'odd'" >
+            <td class="row">{{users.id}}.</td>
             <td>{{users.username|uppercase}}</td>
             <td>{{users.lastname}}</td>
             <td>{{users.useremail}}</td>
@@ -91,8 +80,8 @@
             <td>{{users.hobbies}}</td>
             <td><img ng-src="{{users.image}}" style="width:90px;"></td>
 
-            <td> <button  ng-click="editContact(users.id)">Edit</button>
-                <button  ng-click="deleteContact(users.id)"> <img src=" " height="15" width="30"/>Delete</button></td>
+            <td> <button class="btn btn-primary" ng-click="editContact(users.id)">Edit</button>
+                <button class="btn btn-danger" ng-click="deleteContact(users.id)">Delete</button></td>
 
         </tr>
     </table>

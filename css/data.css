@@ -1,11 +1,16 @@
-body{
-    background-color: mediumpurple;
+.fieldset
+{
+    background-color:floralwhite;
+    border-color:red;
+}
+.body{
+    background-color: navajowhite;
 }
 .header
 {
-    background-color: palevioletred;
-    border-radius: 10px;
-    border: 10px solid darkred;
+    background-color: greenyellow;
+    border-radius: 0;
+    border: 10px solid navajowhite;
 }
 h1
 {
@@ -15,5 +20,24 @@ h1
 table
 {
 
-    border-color: greenyellow;
+    border-color: red;
+}
+th{
+    background-color: greenyellow;
+}
+.even
+{
+    color: cyan;
+}
+.odd
+{
+  color: fuchsia;
+}
+.row
+{
+    color: red;
+}
+.form-signin
+{
+    max-width: 250px;
 }

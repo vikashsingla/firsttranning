@@ -1,0 +1,19 @@
+body{
+    background-color: mediumpurple;
+}
+.header
+{
+    background-color: palevioletred;
+    border-radius: 10px;
+    border: 10px solid darkred;
+}
+h1
+{
+    color:white;
+    text-align: center;
+}
+table
+{
+
+    border-color: greenyellow;
+}
